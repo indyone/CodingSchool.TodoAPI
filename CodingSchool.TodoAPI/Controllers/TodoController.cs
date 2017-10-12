@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using CodingSchool.TodoAPI.Models;
@@ -27,6 +28,21 @@ namespace CodingSchool.TodoAPI.Controllers
         public ActionResult Get()
         {
             return Ok(TodoList);
+        }
+
+        [HttpGet]
+        [Route("/api/something/random")]
+        public ActionResult GetRandom()
+        {
+            if (TodoList.Count == 0)
+            {
+                return NotFound();
+            }
+
+            var index = new Random().Next(0, TodoList.Count);
+            var todo = TodoList[index];
+
+            return Ok(todo);
         }
 
         // GET api/todo/5
