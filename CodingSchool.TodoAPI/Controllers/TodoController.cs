@@ -25,14 +25,14 @@ namespace CodingSchool.TodoAPI.Controllers
 
         // GET api/todo
         [HttpGet]
-        public ActionResult Get()
+        public IActionResult Get()
         {
             return Ok(TodoList);
         }
 
         [HttpGet]
         [Route("/api/something/random")]
-        public ActionResult GetRandom()
+        public IActionResult GetRandom()
         {
             if (TodoList.Count == 0)
             {
@@ -47,7 +47,7 @@ namespace CodingSchool.TodoAPI.Controllers
 
         // GET api/todo/5
         [HttpGet("{id}")]
-        public ActionResult Get(int id)
+        public IActionResult Get(int id)
         {
             var todo = TodoList.FirstOrDefault(t => t.Id == id);
 
@@ -61,7 +61,7 @@ namespace CodingSchool.TodoAPI.Controllers
 
         // POST api/todo
         [HttpPost]
-        public ActionResult Post([FromBody] TodoCreate model)
+        public IActionResult Post([FromBody] TodoCreate model)
         {
             if (model == null || string.IsNullOrEmpty(model.Name))
             {
@@ -82,7 +82,7 @@ namespace CodingSchool.TodoAPI.Controllers
 
         // PUT api/todo/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] TodoUpdate model)
+        public IActionResult Put(int id, [FromBody] TodoUpdate model)
         {
             if (model == null || string.IsNullOrEmpty(model.Name))
             {
@@ -104,7 +104,7 @@ namespace CodingSchool.TodoAPI.Controllers
 
         // DELETE api/todo/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             var todo = TodoList.FirstOrDefault(t => t.Id == id);
 
