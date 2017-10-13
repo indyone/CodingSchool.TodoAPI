@@ -46,7 +46,7 @@ namespace CodingSchool.TodoAPI.Controllers
         }
 
         // GET api/todo/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetById")]
         public IActionResult Get(int id)
         {
             var todo = TodoList.FirstOrDefault(t => t.Id == id);
@@ -77,7 +77,7 @@ namespace CodingSchool.TodoAPI.Controllers
 
             TodoList.Add(todo);
 
-            return CreatedAtAction("Get", todo);
+            return CreatedAtRoute("GetById", new { id = todo.Id }, todo);
         }
 
         // PUT api/todo/5
